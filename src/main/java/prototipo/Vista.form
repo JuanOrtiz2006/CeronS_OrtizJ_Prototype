@@ -113,7 +113,7 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace pref="34" max="32767" attributes="0"/>
+                      <EmptySpace pref="50" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
                               <Component id="panelTop" min="-2" max="-2" attributes="0"/>
@@ -136,7 +136,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                       <Component id="panelTop" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="105" max="32767" attributes="0"/>
+                      <EmptySpace pref="99" max="32767" attributes="0"/>
                       <Component id="panelCenter" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
                       <Component id="panelBotton" min="-2" max="-2" attributes="0"/>
@@ -147,6 +147,16 @@
           </Layout>
           <SubComponents>
             <Container class="javax.swing.JPanel" name="panelTop">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="33" green="0" red="66" type="rgb"/>
+                </Property>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                    <LineBorder/>
+                  </Border>
+                </Property>
+              </Properties>
 
               <Layout>
                 <DimensionLayout dim="0">
@@ -193,6 +203,16 @@
               </SubComponents>
             </Container>
             <Container class="javax.swing.JPanel" name="panelCenter">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="0" green="0" red="66" type="rgb"/>
+                </Property>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                    <LineBorder/>
+                  </Border>
+                </Property>
+              </Properties>
 
               <Layout>
                 <DimensionLayout dim="0">
@@ -267,17 +287,17 @@
                 </Component>
                 <Component class="javax.swing.JTextField" name="txtID">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="jTextField1"/>
+                    <Property name="text" type="java.lang.String" value="id"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="txtXPosition">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="jTextField2"/>
+                    <Property name="text" type="java.lang.String" value="x"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="txtYPosition">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="jTextField3"/>
+                    <Property name="text" type="java.lang.String" value="y"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtYPositionActionPerformed"/>
@@ -286,6 +306,16 @@
               </SubComponents>
             </Container>
             <Container class="javax.swing.JPanel" name="panelBotton">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="0" green="0" red="66" type="rgb"/>
+                </Property>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                    <LineBorder/>
+                  </Border>
+                </Property>
+              </Properties>
 
               <Layout>
                 <DimensionLayout dim="0">

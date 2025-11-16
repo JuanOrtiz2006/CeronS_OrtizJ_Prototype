@@ -101,6 +101,9 @@ public class Vista extends javax.swing.JFrame {
 
         PanelOptions.setBackground(new java.awt.Color(102, 0, 0));
 
+        panelTop.setBackground(new java.awt.Color(102, 0, 51));
+        panelTop.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
         btnObjects.setText("Iniciar Objetos");
         btnObjects.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -136,17 +139,20 @@ public class Vista extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        panelCenter.setBackground(new java.awt.Color(102, 0, 0));
+        panelCenter.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
         lblID.setText("ID Comida:");
 
         lblXPosition.setText("Ubicacion x:");
 
         lblYPosition.setText("Ubicacion y:");
 
-        txtID.setText("jTextField1");
+        txtID.setText("id");
 
-        txtXPosition.setText("jTextField2");
+        txtXPosition.setText("x");
 
-        txtYPosition.setText("jTextField3");
+        txtYPosition.setText("y");
         txtYPosition.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtYPositionActionPerformed(evt);
@@ -195,6 +201,9 @@ public class Vista extends javax.swing.JFrame {
                 .addGap(15, 15, 15))
         );
 
+        panelBotton.setBackground(new java.awt.Color(102, 0, 0));
+        panelBotton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
         btnActualizar.setText("Actualizar");
         btnActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -235,7 +244,7 @@ public class Vista extends javax.swing.JFrame {
         PanelOptionsLayout.setHorizontalGroup(
             PanelOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelOptionsLayout.createSequentialGroup()
-                .addContainerGap(34, Short.MAX_VALUE)
+                .addContainerGap(50, Short.MAX_VALUE)
                 .addGroup(PanelOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelOptionsLayout.createSequentialGroup()
                         .addComponent(panelTop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -252,7 +261,7 @@ public class Vista extends javax.swing.JFrame {
             .addGroup(PanelOptionsLayout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addComponent(panelTop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
                 .addComponent(panelCenter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(52, 52, 52)
                 .addComponent(panelBotton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)

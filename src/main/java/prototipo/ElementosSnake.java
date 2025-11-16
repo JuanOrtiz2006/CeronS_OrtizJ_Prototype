@@ -52,8 +52,13 @@ public abstract class ElementosSnake implements Cloneable {
     
     
     @Override
-    public Object clone() throws CloneNotSupportedException{
-        return  super.clone();
+    public ElementosSnake clone() {
+        try {
+            return (ElementosSnake) super.clone();
+        } catch (CloneNotSupportedException e) {
+            // En Java, esto no debería pasar si implementa Cloneable.
+            throw new RuntimeException("Error al clonar ElementosSnake", e); 
+        }
     }
     
     

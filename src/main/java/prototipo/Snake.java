@@ -36,39 +36,39 @@ public class Snake extends ElementosSnake{
     
     public void mover(char direccion) {
         switch (direccion) {
-            case 'U': // Up
+            case 'U': 
                 moverArriba();
                 break;
-            case 'D': // Down
+            case 'D': 
                 moverAbajo();
                 break;
-            case 'L': // Left
+            case 'L': 
                 moverIzquierda();
                 break;
-            case 'R': // Right
+            case 'R': 
                 moverDerecha();
                 break;
         }
     }
     
     public void moverArriba() {
-        moverSegmentos(); // 1. Mueve la cola
-        this.y -= tamanio; // 2. Mueve la cabeza
+        moverSegmentos(); 
+        this.y -= tamanio; 
     }
 
     public void moverAbajo() {
-        moverSegmentos(); // 1. Mueve la cola
-        this.y += tamanio; // 2. Mueve la cabeza
+        moverSegmentos(); 
+        this.y += tamanio; 
     }
 
     public void moverIzquierda() {
-        moverSegmentos(); // 1. Mueve la cola
-        this.x -= tamanio; // 2. Mueve la cabeza
+        moverSegmentos(); 
+        this.x -= tamanio; 
     }
 
     public void moverDerecha() {
-        moverSegmentos(); // 1. Mueve la cola
-        this.x += tamanio; // 2. Mueve la cabeza
+        moverSegmentos(); 
+        this.x += tamanio;
     }
     
     private void moverSegmentos() {
@@ -84,15 +84,12 @@ public class Snake extends ElementosSnake{
 
     @Override
     public void dibujar(Graphics g) {
-        // 1. Dibuja la cola (segmentos 1 en adelante)
         g.setColor(Color.DARK_GRAY); 
         for (int i = 1; i < segmentos.size(); i++) {
             ElementosSnake segmento = segmentos.get(i);
             g.fillRect(segmento.getX(), segmento.getY(), tamanio, tamanio);
         }
         
-        // 2. Dibuja la cabeza (el elemento Snake en sí) AL FINAL.
-        // Esto asegura que la cabeza siempre se superponga a la cola y otros elementos.
         g.setColor(Color.GREEN);
         g.fillRect(this.x, this.y, tamanio, tamanio);
         

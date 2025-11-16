@@ -28,20 +28,7 @@ public class Comida extends ElementosSnake{
         this.id = id;
     }
 
-    public int getX() {
-        return x;
-    }
-
-    public int getY() {
-        return y;
-    }
-
-    public int getTamanio() {
-        return tamanio;
-    }
     
-    
-
     @Override
     public void dibujar(Graphics g) {
         g.setColor(Color.YELLOW);

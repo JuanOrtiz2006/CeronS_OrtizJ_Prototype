@@ -7,6 +7,7 @@ package prototipo;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -27,7 +28,8 @@ public class Controller {
     
     
     public void iniciarContrlador(){
-       
+        vista.getBtnIniciar().setEnabled(false);
+        vista.getBtnActualizar().setEnabled(false);
         vista.getBtnObjects().addActionListener(e -> iniciarObjetos());
         vista.getBtnClone().addActionListener(e -> clonarComida());
         vista.getBtnActualizar().addActionListener(e -> actualizarComida()); 
@@ -44,8 +46,6 @@ public class Controller {
             }
         }
     }
-    // El siguiente ID es el ID más alto encontrado + 1. 
-    // Si la lista está vacía (maxId = 0), el siguiente será 1.
     return maxId + 1;
 }
     
@@ -79,6 +79,10 @@ public class Controller {
         } catch (Exception e) {
             System.err.println("Error clonando comida: " + e.getMessage());
         }
+        
+        vista.getBtnIniciar().setEnabled(true);
+        vista.getBtnActualizar().setEnabled(true);
+
     }
     
     public void actualizarComida() {
@@ -92,7 +96,6 @@ public class Controller {
                 return;
             }
 
-            // Buscar en la lista de elementos dibujables (Modelo)
             for (ElementosSnake elemento : elementosDibujables) {
                 if (elemento instanceof Comida comidaActual) {
                     if (comidaActual.getId() == inputID) {
@@ -108,6 +111,11 @@ public class Controller {
         } catch (NumberFormatException e) {
             System.err.println("Error de formato: Ingrese números válidos.");
         }
+        
+        vista.getTxtID().setText("");
+        vista.getTxtXPosition().setText("");
+        vista.getTxtYPosition().setText("");
+
     }
     
     
@@ -122,7 +130,6 @@ public class Controller {
             public void keyPressed(KeyEvent e) {
                 int keyCode = e.getKeyCode();
                 char nuevaDireccion = direccionActual;
-                // Lógica para cambiar la dirección (mover en una dirección cada vez)
                 if (keyCode == KeyEvent.VK_UP && direccionActual != 'D') {
                     nuevaDireccion = 'U';
                 } else if (keyCode == KeyEvent.VK_DOWN && direccionActual != 'U') {
@@ -152,23 +159,18 @@ public class Controller {
     private void chequearColisionYCrecimiento() {
         if (this.snake == null) return;
 
-        // Obtener la posición de la cabeza (asumo que snake.tamanio es el tamaño del bloque)
         int headX = this.snake.getX();
         int headY = this.snake.getY();
     
-        // Suponemos que el tamaño del bloque (tamanio) es accesible o fijo (ej: 20)
-        // Ya que no lo veo en el Controller, asumiré que es 20 (de la clase Snake).
+        
         int tamanio = snake.getTamanio(); 
 
         ElementosSnake comidaColisionada = null;
     
-        // 1. ITERAR: Usamos una copia de la lista para buscar y luego eliminar de forma segura
         for (ElementosSnake elemento : new java.util.ArrayList<>(elementosDibujables)) {
         
-            // Solo verificamos si es una Comida Y si NO es el prototipo (ID 0)
             if (elemento instanceof Comida comida && comida.getId() != 0) { 
             
-                // Lógica de colisión (simple superposición de rectángulos)
                 if (headX < comida.getX() + tamanio && headX + tamanio > comida.getX() &&
                     headY < comida.getY() + tamanio && headY + tamanio > comida.getY()) {
                 
@@ -178,21 +180,16 @@ public class Controller {
             }
         }
     
-        // 2. CRECER si hubo colisión
         if (comidaColisionada != null) {
         
-            // a) La comida desaparece del panel (Modelo)
             elementosDibujables.remove(comidaColisionada);
         
-            // b) Obtener el prototipo del segmento de cola
             ElementosSnake prototipoSegmento = prot.getPrototype("SegmentoBase");
         
             if (prototipoSegmento != null) {
                  try {
-                    // c) CLONAR: Se crea el nuevo segmento usando el patrón Prototype
                     ElementosSnake nuevoSegmento = (ElementosSnake) prototipoSegmento.clone();
                 
-                    // d) Agregar al cuerpo de la serpiente
                     this.snake.agregarSegmento(nuevoSegmento); 
                     
                 } catch (Exception ex) {
@@ -211,8 +208,6 @@ public class Controller {
         int headY = this.snake.getY();
         int tamanio = this.snake.getTamanio();
     
-        // Obtener los límites del panel de juego (Vista)
-        // Asumo que tienes un getter para el panel, por ejemplo: vista.getPanelSnake()
         int panelWidth = vista.getPanelSnake().getWidth();
         int panelHeight = vista.getPanelSnake().getHeight();
     
@@ -225,27 +220,26 @@ public class Controller {
         }
     
         if (chocoLimite) {
-            // Lógica de fin del juego
-            System.out.println("💥 ¡GAME OVER! La serpiente chocó contra el límite del panel.");
+            JOptionPane.showMessageDialog(
+            vista, // Componente padre: la ventana principal
+            "¡Perdiste! La serpiente chocó contra el límite del panel.", 
+            "GAME OVER", 
+            JOptionPane.INFORMATION_MESSAGE
+        );
         
             resetJuego();
         }
     }
     
-    // Dentro de la clase Controller
 
 private void resetJuego() {
-    // 1. Eliminar todos los elementos del panel (MODELO)
     elementosDibujables.clear(); 
     
-    // 2. Resetear variables de juego
-    this.snake = null; // La serpiente deja de existir
-    this.direccionActual = 'R'; // Volver a la dirección inicial
+    this.snake = null; 
+    this.direccionActual = 'R'; 
         
 
-    // 4. Quitar el KeyListener del panel para que no intente mover una serpiente nula
     if (vista.getPanelSnake().getKeyListeners().length > 0) {
-        // Asumo que solo tienes un KeyListener
         vista.getPanelSnake().removeKeyListener(vista.getPanelSnake().getKeyListeners()[0]); 
     }
     
