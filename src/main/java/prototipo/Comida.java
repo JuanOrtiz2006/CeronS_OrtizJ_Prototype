@@ -27,6 +27,18 @@ public class Comida extends ElementosSnake{
     public void setId(int id) {
         this.id = id;
     }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public int getTamanio() {
+        return tamanio;
+    }
     
     
 
@@ -34,10 +46,10 @@ public class Comida extends ElementosSnake{
     public void dibujar(Graphics g) {
         g.setColor(Color.YELLOW);
         
-        g.fillOval(x, y, size, size);
+        g.fillOval(x, y, tamanio, tamanio);
         
         g.setColor(Color.BLACK);
-        g.drawString(String.valueOf(id), x + size/2 - 5, y + size/2 + 5);
+        g.drawString(String.valueOf(id), x + tamanio/2 - 5, y + tamanio/2 + 5);
     }
 
     

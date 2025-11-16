@@ -1,4 +1,4 @@
-/*
+    /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
@@ -13,7 +13,7 @@ import java.awt.Graphics;
 public abstract class ElementosSnake implements Cloneable {
     
     protected int x,y;
-    protected int size=20;
+    protected int tamanio=20;
 
     public ElementosSnake(int x, int y) {
         this.x = x;
@@ -28,6 +28,12 @@ public abstract class ElementosSnake implements Cloneable {
         return y;
     }
 
+    public int getSize() {
+        return tamanio;
+    }
+    
+    
+
     public void setX(int x) {
         this.x = x;
     }
@@ -35,6 +41,11 @@ public abstract class ElementosSnake implements Cloneable {
     public void setY(int y) {
         this.y = y;
     }
+
+    public void setSize(int tamanio) {
+        this.tamanio = tamanio;
+    }
+    
     
     
     public abstract void dibujar(Graphics g);

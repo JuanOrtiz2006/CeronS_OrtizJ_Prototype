@@ -16,12 +16,15 @@ public class PrototypeRegistry {
     private static Map<String, ElementosSnake> prototipos = new HashMap<>();
     
     
-    public static void addPrototype(String key, ElementosSnake prototype) {
+    public void addPrototype(String key, ElementosSnake prototype) {
         prototipos.put(key, prototype);
     }
     
-    public static ElementosSnake getPrototype(String key) {
+    public ElementosSnake getPrototype(String key) {
         return prototipos.get(key);
     }
     
+    public void actualizar(){
+        
+    }
 }

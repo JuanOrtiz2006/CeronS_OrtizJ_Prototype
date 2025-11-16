@@ -4,28 +4,54 @@
  */
 package prototipo;
 
+import java.awt.Color;
+import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 /**
  *
  * @author juanp
  */
 public class Vista extends javax.swing.JFrame {
-    
-    private List<ElementosSnake> elementosDibujables = new ArrayList<>();
-    
-    private int nextComidaId = 1;
-    private Snake serpiente;
-    private char direccionActual = 'D';
-    
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Vista.class.getName());
-
+   
     /**
      * Creates new form Vista
      */
+    
+    private final List<ElementosSnake> elementosDibujables = new ArrayList<>();
+    
+    public class PanelJuego extends javax.swing.JPanel {
+
+        public PanelJuego(List<ElementosSnake> elementos) {
+            // Asignamos la lista central para que el panel sepa qué dibujar
+            this.setBackground(Color.WHITE);
+            
+        }
+
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            // Delega el dibujo a los elementos del modelo (lista)
+            for (ElementosSnake elemento : elementosDibujables) {
+                if (elemento != null) {
+                    elemento.dibujar(g); 
+                }
+            }
+        }
+    }
+    
     public Vista() {
         initComponents();
+        
+        PanelJuego customPanel = new PanelJuego(elementosDibujables);
+        customPanel.setBounds(panelSnake.getBounds());
+        panelGeneral.remove(panelSnake);
+        panelGeneral.add(customPanel);
+        this.panelSnake = customPanel; // Reasignar la referencia al nuevo panel
     }
 
     /**
@@ -59,7 +85,8 @@ public class Vista extends javax.swing.JFrame {
 
         panelGeneral.setBackground(new java.awt.Color(51, 0, 0));
 
-        panelSnake.setBackground(new java.awt.Color(102, 0, 0));
+        panelSnake.setBackground(new java.awt.Color(255, 255, 255));
+        panelSnake.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         javax.swing.GroupLayout panelSnakeLayout = new javax.swing.GroupLayout(panelSnake);
         panelSnake.setLayout(panelSnakeLayout);
@@ -208,7 +235,7 @@ public class Vista extends javax.swing.JFrame {
         PanelOptionsLayout.setHorizontalGroup(
             PanelOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelOptionsLayout.createSequentialGroup()
-                .addContainerGap(36, Short.MAX_VALUE)
+                .addContainerGap(34, Short.MAX_VALUE)
                 .addGroup(PanelOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelOptionsLayout.createSequentialGroup()
                         .addComponent(panelTop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -282,41 +309,15 @@ public class Vista extends javax.swing.JFrame {
     }//GEN-LAST:event_btnIniciarActionPerformed
 
     private void btnObjectsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnObjectsActionPerformed
-        Comida comidaBase = new Comida(0, 5, 5);
-        Snake serpienteBase = new Snake(200, 200);
-        PrototypeRegistry.addPrototype("comidaBase", comidaBase);
-        try {
-            PrototypeRegistry.addPrototype("segmentoBase", (ElementosSnake) serpienteBase.clone());
-        } catch (CloneNotSupportedException ex) {
-            System.out.println("Error");
-        }
+        
     }//GEN-LAST:event_btnObjectsActionPerformed
 
     private void btnCloneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloneActionPerformed
-        ElementosSnake prototipoComida = PrototypeRegistry.getPrototype("comidaBase");
-        try {
-            Comida nuevaComida = (Comida) prototipoComida.clone();
-            int nextComidaId=0;
-            nuevaComida.setId(nextComidaId++); 
-            nuevaComida.setY(nuevaComida.getY() + (nextComidaId * 25)); // Para aparecer más abajo
-        } catch (CloneNotSupportedException ex) {
-            System.out.println("Error");
-        }
-        
-        
+         
     }//GEN-LAST:event_btnCloneActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-        int inputID = Integer.parseInt(txtID.getText());
-        int inputX = Integer.parseInt(txtXPosition.getText());
-        int inputY = Integer.parseInt(txtYPosition.getText());
-
         
-        if (elemento instanceof Comida && ((Comida)elemento).getId() == inputID && inputID != 0) {
-            elemento.setX(inputX);
-            elemento.setY(inputY);
-            break;
-        }
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     /**
@@ -336,13 +337,52 @@ public class Vista extends javax.swing.JFrame {
                 }
             }
         } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> new Vista().setVisible(true));
     }
+
+
+
+    public JButton getBtnActualizar() {
+        return btnActualizar;
+    }
+
+    public JButton getBtnClone() {
+        return btnClone;
+    }
+
+    public JButton getBtnIniciar() {
+        return btnIniciar;
+    }
+
+    public JButton getBtnObjects() {
+        return btnObjects;
+    }
+
+    public JPanel getPanelSnake() {
+        return panelSnake;
+    }
+
+    public JTextField getTxtID() {
+        return txtID;
+    }
+
+    public JTextField getTxtXPosition() {
+        return txtXPosition;
+    }
+
+    public JTextField getTxtYPosition() {
+        return txtYPosition;
+    }
+
+    public List<ElementosSnake> getElementosDibujables() {
+        return elementosDibujables;
+    }
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelOptions;
